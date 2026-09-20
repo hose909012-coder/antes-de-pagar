@@ -2,6 +2,8 @@ interface:
   display_name: "Antes de Pagar"
   short_description: "Detecta señales de estafa antes de actuar."
   brand_color: "#F59E0B"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.svg"
   default_prompt: "Usa $antes-de-pagar para analizar esta solicitud antes de que envíe dinero o datos."
 policy:
   allow_implicit_invocation: true

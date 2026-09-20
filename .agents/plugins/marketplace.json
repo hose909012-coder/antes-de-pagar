@@ -1,0 +1,21 @@
+{
+  "name": "antes-de-pagar",
+  "interface": {
+    "displayName": "Antes de Pagar"
+  },
+  "plugins": [
+    {
+      "name": "antes-de-pagar",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/hose909012-coder/antes-de-pagar.git",
+        "ref": "main"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

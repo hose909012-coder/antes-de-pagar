@@ -28,7 +28,8 @@ def main() -> int:
 
     assert portable.get("$schema") == "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
     assert portable.get("name") == compatibility.get("name") == NAME
-    assert portable.get("version") == compatibility.get("version")
+    compatibility_version = compatibility.get("version", "")
+    assert compatibility_version.split("+", 1)[0] == portable.get("version")
     assert re.fullmatch(r"\d+\.\d+\.\d+", portable["version"])
     assert marketplace.get("name") == NAME
     assert marketplace["plugins"][0]["name"] == NAME
@@ -49,10 +50,41 @@ def main() -> int:
         "SECURITY.md",
         "CONTRIBUTING.md",
         "LICENSE",
+        "COMPATIBILITY.md",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".cursor/rules/antes-de-pagar.mdc",
+        "adapters/UNIVERSAL.md",
+        "assets/icon.svg",
+        "assets/logo.svg",
+        "assets/logo-dark.svg",
+        "assets/banner.svg",
+        "skills/antes-de-pagar/assets/icon.svg",
+        "skills/antes-de-pagar/assets/logo.svg",
         "tests/cases.md",
     ]
     for relative in required:
         assert (ROOT / relative).is_file(), f"Missing {relative}"
+
+    adapters = [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".cursor/rules/antes-de-pagar.mdc",
+        "adapters/UNIVERSAL.md",
+    ]
+    canonical = "skills/antes-de-pagar/SKILL.md"
+    for relative in adapters:
+        content = (ROOT / relative).read_text(encoding="utf-8")
+        assert canonical in content or relative == "CLAUDE.md", f"{relative} must reference {canonical}"
+
+    interface = portable["extensions"]["com.openai"]["interface"]
+    for key in ("composerIcon", "logo", "logoDark"):
+        asset = interface[key].removeprefix("./")
+        assert (ROOT / asset).is_file(), f"Missing interface asset {asset}"
 
     placeholder = "[" + "TODO:"
     for path in ROOT.rglob("*"):

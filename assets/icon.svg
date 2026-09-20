@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+  <title id="title">Icono de Antes de Pagar</title>
+  <defs><linearGradient id="g" x1="38" y1="25" x2="214" y2="230" gradientUnits="userSpaceOnUse"><stop stop-color="#FBBF24"/><stop offset="1" stop-color="#F97316"/></linearGradient></defs>
+  <rect width="256" height="256" rx="58" fill="#0F172A"/>
+  <path d="M128 28 207 59v55c0 53-31 91-79 114-48-23-79-61-79-114V59l79-31Z" fill="url(#g)"/>
+  <path d="M91 127l24 24 51-55" fill="none" stroke="#0F172A" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="197" cy="61" r="20" fill="#22C55E" stroke="#0F172A" stroke-width="8"/>
+</svg>

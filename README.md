@@ -1,80 +1,91 @@
-# Antes de Pagar
+<p align="center">
+  <img src="assets/banner.svg" alt="Antes de Pagar — pausa, verifica, decide" width="100%">
+</p>
 
-**Antes de mandar dinero, manda primero la evidencia.**
+<p align="center">
+  <a href="https://github.com/hose909012-coder/antes-de-pagar/actions/workflows/validate.yml"><img alt="Validación" src="https://github.com/hose909012-coder/antes-de-pagar/actions/workflows/validate.yml/badge.svg"></a>
+  <img alt="Versión 0.2.0" src="https://img.shields.io/badge/versión-0.2.0-F59E0B">
+  <img alt="Agent Skills compatible" src="https://img.shields.io/badge/Agent%20Skills-compatible-0F172A">
+  <a href="LICENSE"><img alt="Licencia MIT" src="https://img.shields.io/badge/licencia-MIT-22C55E"></a>
+</p>
 
-Antes de Pagar es un plugin abierto para ChatGPT Work y Codex que analiza posibles estafas, phishing, suplantaciones, ofertas engañosas y solicitudes de pago. Puede trabajar con capturas, mensajes, correos, enlaces, facturas, ofertas de trabajo y ventas en línea.
+<p align="center"><strong>Antes de mandar dinero, manda primero la evidencia.</strong></p>
 
-No etiqueta automáticamente a personas como estafadoras y nunca promete que una operación es “100 % segura”. Separa hechos, señales e incertidumbre; después propone una verificación independiente.
+Antes de Pagar es una skill abierta y multiagente que analiza posibles estafas, phishing, suplantaciones, ofertas engañosas y solicitudes de pago. Trabaja con capturas, mensajes, correos, enlaces, facturas, ofertas de trabajo y ventas en línea.
 
-## Qué hace
+No acusa automáticamente a personas ni promete que una operación sea “100 % segura”. Separa hechos, señales e incertidumbre y propone una verificación independiente.
 
-- Clasifica el caso como `Riesgo alto`, `Precaución`, `Pocas señales de riesgo` o `No hay datos suficientes`.
-- Explica las señales concretas que influyen en la conclusión.
-- Investiga afirmaciones actuales usando fuentes oficiales cuando hay acceso a búsqueda web.
-- Indica qué no hacer y cómo verificar por un canal independiente.
-- Da un plan de contención si el usuario ya pagó o compartió credenciales.
-- Responde en el idioma del usuario.
+## Por qué es esencial
 
-## Ejemplos
+Las decisiones urgentes y costosas suelen ocurrir justo cuando hay menos tiempo para comprobar. Esta skill introduce una pausa repetible antes de enviar dinero, credenciales o documentos y convierte evidencia desordenada en una decisión accionable.
 
-- “Analiza esta captura antes de que pague.”
-- “Me ofrecieron trabajo y quieren que deposite un cheque. ¿Es normal?”
-- “Este correo dice que mi cuenta bancaria será bloqueada. Revisa el enlace.”
-- “Ya mandé la transferencia, ¿qué hago ahora?”
+| Entrada | La skill detecta | Resultado |
+|---|---|---|
+| Captura o mensaje | Urgencia, presión, suplantación | Nivel de riesgo y señales |
+| Enlace o dominio | Inconsistencias y afirmaciones verificables | Fuentes oficiales y pasos seguros |
+| Oferta o factura | Métodos de pago, identidad y condiciones | Qué no hacer y cómo comprobar |
+| Pago ya realizado | Exposición y acciones pendientes | Plan inmediato de contención |
 
-## Instalación desde GitHub
+## Compatible por diseño
 
-Requiere una versión de Codex compatible con Agent Plugins.
+El núcleo vive en [`skills/antes-de-pagar/SKILL.md`](skills/antes-de-pagar/SKILL.md) y sigue el formato abierto Agent Skills. Los adaptadores sólo enrutan al mismo flujo; así no existen seis versiones contradictorias de las reglas de seguridad.
+
+| Agente o entorno | Integración incluida |
+|---|---|
+| Codex / ChatGPT Work | Agent Plugin + `openai.yaml` |
+| Claude Code | `CLAUDE.md` + skill estándar |
+| Gemini CLI | `GEMINI.md` |
+| GitHub Copilot | `.github/copilot-instructions.md` |
+| Cursor | `.cursor/rules/antes-de-pagar.mdc` |
+| OpenCode y lectores de AGENTS.md | `AGENTS.md` |
+| Otros agentes | [`adapters/UNIVERSAL.md`](adapters/UNIVERSAL.md) |
+
+Consulta [COMPATIBILITY.md](COMPATIBILITY.md) para instalación, alcance y límites de cada integración.
+
+## Prueba rápida
+
+> “Antes de pagar esta factura, analiza la evidencia. Separa hechos de suposiciones, dime las tres señales principales y cómo verificar al emisor por un canal independiente.”
+
+La respuesta siempre prioriza:
+
+1. **Conclusión:** `Riesgo alto`, `Precaución`, `Pocas señales de riesgo` o `No hay datos suficientes`.
+2. **Por qué:** señales observables, sin inventar certeza.
+3. **Acción inmediata:** qué no hacer y cómo verificar.
+4. **Contención:** si el usuario ya pagó o compartió datos.
+
+## Instalación en Codex
+
+Requiere una versión compatible con Agent Plugins.
 
 ```bash
 codex plugin marketplace add hose909012-coder/antes-de-pagar --ref main
 codex plugin add antes-de-pagar@antes-de-pagar
 ```
 
-Después, inicia un chat nuevo e invoca `$antes-de-pagar`, o abre el directorio de Plugins en la aplicación de escritorio de ChatGPT, selecciona el catálogo **Antes de Pagar** e instala el plugin.
-
-Para recibir actualizaciones:
+Inicia un chat nuevo e invoca `$antes-de-pagar`. Para actualizar:
 
 ```bash
 codex plugin marketplace upgrade antes-de-pagar
 codex plugin add antes-de-pagar@antes-de-pagar
 ```
 
+Para otros agentes, clona el repositorio y sigue la fila correspondiente en [COMPATIBILITY.md](COMPATIBILITY.md).
+
 ## Uso seguro
 
 - Censura números de cuenta, direcciones, documentos, contraseñas y códigos antes de subir capturas.
 - Nunca compartas contraseñas, códigos de un solo uso, frases semilla ni claves privadas.
 - No abras enlaces sospechosos para “comprobarlos”; comparte el texto o una captura.
-- Una conclusión de pocas señales de riesgo no sustituye la verificación con el banco, plataforma o empresa por un canal oficial.
+- Una conclusión con pocas señales no sustituye la verificación con el banco, plataforma o empresa por un canal oficial.
 
-## Estructura
-
-```text
-plugin.json                              Manifiesto portátil
-.codex-plugin/plugin.json                Compatibilidad con Codex
-.agents/plugins/marketplace.json         Catálogo instalable desde GitHub
-skills/antes-de-pagar/SKILL.md           Flujo principal
-skills/antes-de-pagar/references/        Marco, formato y respuesta a incidentes
-tests/cases.md                            Casos de evaluación
-scripts/validate_repo.py                  Validación sin dependencias
-```
-
-## Desarrollo
+## Desarrollo y validación
 
 ```bash
 python3 scripts/validate_repo.py
-python3 /ruta/a/skill-creator/scripts/quick_validate.py skills/antes-de-pagar
-python3 /ruta/a/plugin-creator/scripts/validate_plugin.py .
 ```
 
-Las dos últimas rutas dependen de dónde estén instaladas las skills de creación. El primer comando funciona directamente en este repositorio.
+La validación comprueba manifiestos, versión, recursos visuales, adaptadores multiagente, referencias canónicas y marcadores incompletos. Consulta [CONTRIBUTING.md](CONTRIBUTING.md) para contribuir y [SECURITY.md](SECURITY.md) para reportar fallos sin publicar datos personales.
 
-Consulta [CONTRIBUTING.md](CONTRIBUTING.md) para proponer cambios. Los reportes de seguridad deben seguir [SECURITY.md](SECURITY.md) y no deben incluir datos personales reales en issues públicos.
+## Privacidad y licencia
 
-## Privacidad y limitaciones
-
-La versión actual es un plugin de instrucciones: no incluye servidor, base de datos ni telemetría propios. El tratamiento de los mensajes y archivos depende del producto anfitrión y de las herramientas que el usuario habilite. Consulta [PRIVACY.md](PRIVACY.md) y [TERMS.md](TERMS.md).
-
-## Licencia
-
-[MIT](LICENSE)
+No incluye servidor, base de datos ni telemetría propios. El tratamiento de mensajes y archivos depende del agente anfitrión y de las herramientas habilitadas. Consulta [PRIVACY.md](PRIVACY.md), [TERMS.md](TERMS.md) y la licencia [MIT](LICENSE).

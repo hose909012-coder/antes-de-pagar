@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "antes-de-pagar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Analiza posibles estafas antes de enviar dinero, datos o credenciales.",
   "author": {
     "name": "Jose Dev",
@@ -28,7 +28,10 @@
           "¿Este mensaje parece una estafa?",
           "Revisa esta oferta y dime cómo verificarla."
         ],
-        "brandColor": "#F59E0B"
+        "brandColor": "#F59E0B",
+        "composerIcon": "./assets/icon.svg",
+        "logo": "./assets/logo.svg",
+        "logoDark": "./assets/logo-dark.svg"
       }
     }
   }

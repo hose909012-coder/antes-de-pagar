@@ -1,6 +1,6 @@
 {
   "name": "antes-de-pagar",
-  "version": "0.1.0",
+  "version": "0.2.0+codex.20260920204057",
   "description": "Analiza posibles estafas antes de enviar dinero, datos o credenciales.",
   "author": {
     "name": "Jose Dev",
@@ -9,23 +9,36 @@
   "homepage": "https://github.com/hose909012-coder/antes-de-pagar#readme",
   "repository": "https://github.com/hose909012-coder/antes-de-pagar",
   "license": "MIT",
-  "keywords": ["scam", "fraud", "phishing", "safety", "spanish"],
+  "keywords": [
+    "scam",
+    "fraud",
+    "phishing",
+    "safety",
+    "spanish"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Antes de Pagar",
-    "shortDescription": "Revisa señales de estafa antes de actuar.",
-    "longDescription": "Analiza capturas, mensajes, enlaces, ofertas, facturas y solicitudes de pago; explica las señales de riesgo y propone pasos seguros de verificación.",
+    "shortDescription": "Revisa se\u00f1ales de estafa antes de actuar.",
+    "longDescription": "Analiza capturas, mensajes, enlaces, ofertas, facturas y solicitudes de pago; explica las se\u00f1ales de riesgo y propone pasos seguros de verificaci\u00f3n.",
     "developerName": "Jose Dev",
     "category": "Productivity",
-    "capabilities": ["Analysis", "Web Research", "Image Understanding"],
+    "capabilities": [
+      "Analysis",
+      "Web Research",
+      "Image Understanding"
+    ],
     "websiteURL": "https://github.com/hose909012-coder/antes-de-pagar",
     "privacyPolicyURL": "https://github.com/hose909012-coder/antes-de-pagar/blob/main/PRIVACY.md",
     "termsOfServiceURL": "https://github.com/hose909012-coder/antes-de-pagar/blob/main/TERMS.md",
     "defaultPrompt": [
-      "Analiza esta captura antes de que envíe dinero.",
-      "¿Este mensaje parece una estafa?",
-      "Revisa esta oferta y dime cómo verificarla."
+      "Analiza esta captura antes de que env\u00ede dinero.",
+      "\u00bfEste mensaje parece una estafa?",
+      "Revisa esta oferta y dime c\u00f3mo verificarla."
     ],
-    "brandColor": "#F59E0B"
+    "brandColor": "#F59E0B",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/logo.svg",
+    "logoDark": "./assets/logo-dark.svg"
   }
 }
